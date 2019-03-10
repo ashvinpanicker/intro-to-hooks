@@ -15,6 +15,10 @@ function App(props) {
     event.preventDefault();
     const username = event.target[0].value;
     setLoading(true);
+    fetchData(username)
+  }
+
+  function fetchData(username) {
     axios
       .get(`https://github-user.now.sh/?username=${username}`)
       .then(response => {

@@ -1,8 +1,9 @@
 import React from "react";
 import Logo from "../common/logo";
 
-export default (props) => {
-    const [disabled, setDisabled] = React.useState(true);
+// Custom hook
+function useSmartButton(buttonDefault) {
+    const [disabled, setDisabled] = React.useState(buttonDefault);
 
     function onChange(event) {
         if (event.target.value.length === 0) {
@@ -11,6 +12,13 @@ export default (props) => {
             setDisabled(false);
         }
     }
+
+    return [disabled, onChange];
+}
+
+export default (props) => {
+    const [disabled, onChange] = useSmartButton(true);
+
     return (
         <form className="user-form" onSubmit={props.onChange}>
             <Logo big="true" />

@@ -6,6 +6,7 @@ import Header from "./components/common/header";
 import UserForm from "./components/user-form";
 import UserInfo from "./components/user-info";
 import Repositories from "./components/repositories";
+import UserContext from './context';
 
 function App(props) {
   const [data, setData] = React.useState({});
@@ -36,7 +37,9 @@ function App(props) {
 
       {data.repos ? (
         <div>
-          <UserInfo data={data} />
+          <UserContext.Provider value={data}>
+            <UserInfo data={data} />
+          </UserContext.Provider>
           <Repositories repos={data.repos} />
         </div>
       ) : null}
